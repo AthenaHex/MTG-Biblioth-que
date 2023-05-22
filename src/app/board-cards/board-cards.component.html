@@ -1,0 +1,50 @@
+
+<table class="table-filter">
+    <thead>
+        <tr>
+            <th>Couleur(s)</th>
+            <th>Coût de mana</th>
+            <th>Type(s)</th>
+            <th>Sous-type(s)</th>
+            <th>Rareté</th>
+            <th>Code de set</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input [ngClass]="displayColors ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="displayColors"></td>
+            <td><input [ngClass]="displayManaCost ? 'checkbox-true' : 'checkbox-false'" type="checkbox" [(ngModel)]="displayManaCost"></td>
+            <td><input [ngClass]="displayType ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="displayType"></td>
+            <td><input [ngClass]="displaySubtypes ? 'checkbox-true' : 'checkbox-false'" type="checkbox" [(ngModel)]="displaySubtypes"></td>
+            <td><input [ngClass]="displayRarity ? 'checkbox-true' : 'checkbox-false'" type="checkbox" [(ngModel)]="displayRarity"></td>
+            <td><input [ngClass]="displaySetCode ? 'checkbox-true' : 'checkbox-false'" type="checkbox" [(ngModel)]="displaySetCode"></td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table-display">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th *ngIf="displayColors">Couleur(s)</th>
+            <th *ngIf="displayManaCost">Coût de mana</th>
+            <th *ngIf="displayType">Type</th>
+            <th *ngIf="displaySubtypes">Sous-type(s)</th>
+            <th *ngIf="displayRarity">Rareté</th>
+            <th *ngIf="displaySetCode">Code de set</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="cards$ | async as cards">
+        <tr *ngFor="let card of cards">
+            <td class="text-left">{{card.name}}</td>
+            <td [ngClass]="colorDisplay(card.colors)" *ngIf="displayColors">{{card.colors}}</td>
+            <td *ngIf="displayManaCost">{{card.manaCost}}</td>
+            <td class="text-left" *ngIf="displayType">{{card.type}}</td>
+            <td class="text-left" *ngIf="displaySubtypes">{{card.subtypes}}</td>
+            <td *ngIf="displayRarity">{{card.rarity}}</td>
+            <td *ngIf="displaySetCode">{{card.setCode}}</td>
+            <button>voir les détails</button><button>page de la carte</button>
+        </tr>
+    </tbody>
+</table>
