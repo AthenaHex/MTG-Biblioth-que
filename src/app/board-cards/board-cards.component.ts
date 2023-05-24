@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from '../card.service';
 import { Card } from '../models/cards';
-import { Rulings } from '../models/rulings';
-import { Observable, map } from 'rxjs';
+import { Observable, map, filter } from 'rxjs';
 
 
 @Component({
@@ -15,22 +14,46 @@ import { Observable, map } from 'rxjs';
 export class BoardCardsComponent implements OnInit{
   // Variables __________________________________
   cards$: Observable<Card[]> | undefined;
+  cardsFiltered$: Observable<Card[]> | undefined;
   errorMessageCardService:string="";
+  // ______ booléans de l'affichage
   displayColors:boolean = true;
   displayManaCost:boolean = true;
   displayType:boolean = true;
   displaySubtypes:boolean = true;
   displayRarity:boolean = true;
   displaySetCode:boolean = true;
+  // ______ booléans et string des filtres
+  filterSearchText:string = "";
+  filterName:boolean = true;
+  filterText:boolean = false; // text
+  filterFlavorText:boolean = false; // flavorText
+
 
   // ___ Le constructeur défini la dépendance
   constructor(private cardService:CardService){}
   
   ngOnInit(): void {
     this.cards$ = this.cardService.getCards();
+    this.cardsFiltered$ = this.cards$;
   }
 
-  colorFilter:string = "W";
+
+  
+  filterPerform(filterSearchText:string):void{
+    // this.cardsFiltered$ = this.cardsFiltered$?.pipe(
+    //   map(cards => 
+    //     filter((card:Card) => 
+    //       card.name.toLocaleLowerCase().includes(filterSearchText)
+    //       )      
+    //     )
+    //   )
+  }
+
+
+
+
+
 
   colorDisplay(colors:string[]):string{
     const size:number = colors.length;

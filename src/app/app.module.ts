@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { BoardCardsComponent } from './board-cards/board-cards.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BoardCardDetailComponent } from './board-card-detail/board-card-detail.component';
+import { CardDetailComponent } from './card-detail/card-detail.component';
 
 
 
@@ -18,6 +20,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     BoardCardsComponent,
+    BoardCardDetailComponent,
+    CardDetailComponent,
 
   ],
   imports: [

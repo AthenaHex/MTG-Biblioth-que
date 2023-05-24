@@ -1,4 +1,27 @@
 
+<h4 class="description-line">Filtres :</h4>
+<table class="table-filter">
+    <thead>
+        <tr>
+            <td> <input type="text" value="filterSearchText" [(ngModel)]="filterSearchText"> </td>
+            <td><button class="full-button" (click)="filterPerform(filterSearchText)">Filtrer</button></td>
+            <td><button class="full-button">Plus de filtres -></button></td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <th>Texte</th>
+            <th>Texte d'illustration</th>
+        </tr>
+    </thead>
+    <tbody>
+            <td><input [ngClass]="filterName ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="filterName"></td>
+            <td><input [ngClass]="filterText ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="filterText"></td>
+            <td><input [ngClass]="filterFlavorText ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="filterFlavorText"></td>
+
+    </tbody>
+</table>
+
+<h4 class="description-line">Affichage(s) :</h4>
 <table class="table-filter">
     <thead>
         <tr>
@@ -22,6 +45,7 @@
     </tbody>
 </table>
 
+<h4 class="description-line">Résultat(s) :</h4>
 <table class="table-display">
     <thead>
         <tr>
@@ -37,7 +61,7 @@
     </thead>
     <tbody *ngIf="cards$ | async as cards">
         <tr *ngFor="let card of cards">
-            <td class="text-left">{{card.name}}</td>
+            <th class="text-left">{{card.name}}</th>
             <td [ngClass]="colorDisplay(card.colors)" *ngIf="displayColors">{{card.colors}}</td>
             <td *ngIf="displayManaCost">{{card.manaCost}}</td>
             <td class="text-left" *ngIf="displayType">{{card.type}}</td>
