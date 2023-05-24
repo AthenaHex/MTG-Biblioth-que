@@ -68,7 +68,7 @@
             <td class="text-left" *ngIf="displaySubtypes">{{card.subtypes}}</td>
             <td *ngIf="displayRarity">{{card.rarity}}</td>
             <td *ngIf="displaySetCode">{{card.setCode}}</td>
-            <button>voir les détails</button><button>page de la carte</button>
+            <button>voir les détails</button><button routerLink="/details/{{card.name}}">page de la carte</button>
         </tr>
     </tbody>
 </table>

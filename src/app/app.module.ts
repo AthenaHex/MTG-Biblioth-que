@@ -29,6 +29,12 @@ import { CardDetailComponent } from './card-detail/card-detail.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
+      // { path: 'home', component: HomeComponent},
+      // { path: 'list', component: BoardCommentsComponent},
+      // { path: 'comments', component: BoardOnlyCommentsComponent},
+      // { path: 'contact', component: ContactComponent},
+      // { path: 'about', component: AboutUsComponent},
+      { path: 'details/:nameCard', component: BoardCardDetailComponent},
       { path: '', redirectTo: ' ', pathMatch: 'full' },
       //{ path: '**', redirectTo: 'restaurants-advice', pathMatch: 'full'},
     ]),
