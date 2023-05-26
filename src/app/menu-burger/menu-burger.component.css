@@ -1,0 +1,65 @@
+
+
+#container{
+    position: fixed;
+    left:0;
+    top:50px;
+}
+
+button{
+    background-color: rgb(255, 255, 130);
+    border: none;
+    transition: 0.35s;
+}
+button:hover{
+    background-color: rgb(206, 183, 48);
+}
+button:active{
+    background-color: rgb(72, 68, 46);
+}
+
+#menu-button{
+    height: 35px;
+    width: 115px;
+    left: 0%;
+}
+
+.menu-close{
+    background-color: rgba(130, 255, 130, 0);
+    position: relative;
+    left: -200px;
+    transition: 1s;
+}
+
+.menu-open{
+    background-color: rgb(150, 255, 130);
+    position: relative;
+    left: -15px;
+    transition: 1s;
+    align-items: left;
+    justify-content: left;
+}
+
+#menu > *{
+    position: inherit;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

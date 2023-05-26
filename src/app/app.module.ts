@@ -12,6 +12,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BoardCardDetailComponent } from './board-card-detail/board-card-detail.component';
 import { CardDetailComponent } from './card-detail/card-detail.component';
+import { MenuBurgerComponent } from './menu-burger/menu-burger.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -22,6 +25,8 @@ import { CardDetailComponent } from './card-detail/card-detail.component';
     BoardCardsComponent,
     BoardCardDetailComponent,
     CardDetailComponent,
+    MenuBurgerComponent,
+    AboutComponent,
 
   ],
   imports: [
@@ -29,14 +34,14 @@ import { CardDetailComponent } from './card-detail/card-detail.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      // { path: 'home', component: HomeComponent},
-      // { path: 'list', component: BoardCommentsComponent},
+      { path: 'home', component: HomeComponent},
+      { path: 'list', component: BoardCardsComponent},
       // { path: 'comments', component: BoardOnlyCommentsComponent},
       // { path: 'contact', component: ContactComponent},
-      // { path: 'about', component: AboutUsComponent},
+      { path: 'about', component: AboutComponent},
       { path: 'details/:nameCard', component: BoardCardDetailComponent},
-      { path: '', redirectTo: ' ', pathMatch: 'full' },
-      //{ path: '**', redirectTo: 'restaurants-advice', pathMatch: 'full'},
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: '**', redirectTo: '/home', pathMatch: 'full'},
     ]),
   ],
   providers: [

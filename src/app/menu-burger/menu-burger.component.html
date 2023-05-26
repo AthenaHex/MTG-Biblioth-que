@@ -1,0 +1,15 @@
+
+
+<div id="container">
+
+    <button id="menu-button" (click)="toggleMenu()">Menu</button>
+
+    
+    
+    <ul id="menu" [ngClass]="menuIsOpen ? 'menu-open' : 'menu-close'">
+        <a routerLink="/home">Accueil</a>
+        <a routerLink="/list">L'extension</a>
+        <a routerLink="/about">A propos</a>
+    </ul>
+
+</div>

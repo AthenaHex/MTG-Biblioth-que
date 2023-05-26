@@ -6,6 +6,10 @@
 
 
 html{
+  background-image: url('./assets/Wallpaper.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   background-color: rgb(33, 33, 33);
 }
 
