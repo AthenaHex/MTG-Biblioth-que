@@ -39,7 +39,7 @@ import { AboutComponent } from './about/about.component';
       // { path: 'comments', component: BoardOnlyCommentsComponent},
       // { path: 'contact', component: ContactComponent},
       { path: 'about', component: AboutComponent},
-      { path: 'details/:nameCard', component: BoardCardDetailComponent},
+      { path: 'details/:number', component: BoardCardDetailComponent},
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', redirectTo: '/home', pathMatch: 'full'},
     ]),
