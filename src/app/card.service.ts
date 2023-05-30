@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Card } from "./models/cards";
 
-import { Observable, catchError, tap, throwError } from "rxjs"; // Reactive extends (pour gerer les choses de manière asynchrone)
+import { Observable, catchError, filter, map, tap, throwError } from "rxjs"; // Reactive extends (pour gerer les choses de manière asynchrone)
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 
@@ -18,8 +18,14 @@ export class CardService {
   // Méthode de Getter
   getCards():Observable<Card[]>{
     return this._http.get<Card[]>(this._cardsUrl).pipe(
-      tap(data => console.log('Observable<Card[]> : ', JSON.stringify(data))), // Pour print les données : JSON.stringify(data)
+      // tap(data => console.log('Observable<Card[]> : ', JSON.stringify(data))), // Pour print les données : JSON.stringify(data)
       catchError(this.handleError)
+    );
+  }
+
+  getCardsByNumber(number: string):Observable<Card>{
+    return this._http.get<Card[]>("../"+this._cardsUrl).pipe(
+      map(cards => cards.filter(card => card.number === number)[0])
     );
   }
   
