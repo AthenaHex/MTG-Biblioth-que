@@ -4,6 +4,13 @@
  
 }
 
+.more-filters{
+    
+}
+.more-filters-invisible{
+    visibility: collapse;
+}
+
 .full-button{
  border-radius: 100px;
  border: solid 2px rgb(125, 75, 20);
@@ -157,3 +164,13 @@ button:hover{
     height: 28px;
     margin: 0%;
 }
+
+
+
+
+
+
+
+
+
+

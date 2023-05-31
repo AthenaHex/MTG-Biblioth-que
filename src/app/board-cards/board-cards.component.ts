@@ -26,6 +26,7 @@ export class BoardCardsComponent implements OnInit{
   displaySetCode:boolean = true;
   // ______ booléans et string des filtres
   filterSearchText:string = "";
+  moreFilterIsDisplay:boolean = false;
   isFilterByName:boolean = true;
   isFilterByText:boolean = false; // text
   isFilterByFlavorText:boolean = false; // flavorText
@@ -109,6 +110,9 @@ export class BoardCardsComponent implements OnInit{
     
   }
 
-
+  // ______ affichage des filtres précis
+  toggleMoreFilters():void{
+    this.moreFilterIsDisplay = !this.moreFilterIsDisplay;
+  }
 
 }

@@ -5,8 +5,44 @@
         <tr>
             <td> <input type="text" value="filterSearchText" [(ngModel)]="filterSearchText"> </td>
             <td><button class="full-button" (click)="performFilter(filterSearchText)">Filtrer</button></td>
-            <td><button class="full-button">Plus de filtres -></button></td>
+            <td><button class="full-button" (click)="toggleMoreFilters()">Plus de filtres -></button></td>
         </tr>
+        <div [ngClass]="moreFilterIsDisplay ? 'more-filters' : 'more-filters-invisible' ">
+            <tr> 
+                <th class="text-left">Force</th> 
+                <th>
+                    <select> 
+                        <option value="">Egale à</option> 
+                        <option value="">Plus petit que</option> 
+                        <option value="">Plus grand que</option>
+                    </select> 
+                </th>                
+                <th><input type="text"></th> 
+            </tr>
+            <tr>
+                <th class="text-left">Endurance</th> 
+                <th>
+                    <select> 
+                        <option value="">Egale à</option> 
+                        <option value="">Plus petit que</option> 
+                        <option value="">Plus grand que</option>
+                    </select> 
+                </th>
+                <th><input type="text"></th> 
+            </tr>
+            <tr>
+                <th class="text-left">Coût convertie</th>
+                <th>
+                    <select> 
+                        <option value="">Egale à</option> 
+                        <option value="">Plus petit que</option> 
+                        <option value="">Plus grand que</option>
+                    </select> 
+                </th>
+                 <th><input type="text"></th>
+            </tr>
+        </div>
+
         <tr>
             <th>Nom</th>
             <th>Texte</th>
