@@ -12,9 +12,10 @@ import { Observable, map, filter } from 'rxjs';
 })
 
 export class BoardCardsComponent implements OnInit{
+
   // Variables __________________________________
-  cards$: Observable<Card[]> | undefined;
-  cardsFiltered$: Observable<Card[]> | undefined;
+  allCards:Card[] = [];
+  cardsFiltered:Card[] = [];
   errorMessageCardService:string="";
   // ______ booléans de l'affichage
   displayColors:boolean = true;
@@ -25,36 +26,61 @@ export class BoardCardsComponent implements OnInit{
   displaySetCode:boolean = true;
   // ______ booléans et string des filtres
   filterSearchText:string = "";
-  filterName:boolean = true;
-  filterText:boolean = false; // text
-  filterFlavorText:boolean = false; // flavorText
+  isFilterByName:boolean = true;
+  isFilterByText:boolean = false; // text
+  isFilterByFlavorText:boolean = false; // flavorText
 
+  errorMessage:string="";
 
   // ___ Le constructeur défini la dépendance
-  constructor(private cardService:CardService){}
-  
+  constructor(private cardService:CardService){};
+
+  //___ OnInit :
   ngOnInit(): void {
-    this.cards$ = this.cardService.getCards();
-    this.cardsFiltered$ = this.cards$;
-  }
+    this.cardService.getCards().subscribe({
+      next: cards =>                 // if ok
+      this.allCards = cards,    
+    error:                               // if not ok
+      err => this.errorMessage = err        // Message d'erreur
+    })
+    this.cardsFiltered = this.allCards;
+  };
 
+  // ___ Défini les cartes après filtre
+  performFilter(filterSearchText:string):void{
+    this.cardsFiltered = this.allCards;
+    if(!this.isFilterByName && !this.isFilterByText && !this.isFilterByFlavorText){
+      //Aucune filtre
+    }else{
+      filterSearchText = filterSearchText.toLocaleLowerCase(); // le filtre en minuscule
+      if(this.isFilterByName==true){
+        this.cardsFiltered = this.cardsFiltered.filter((card:Card)=> // Filtre si ...
+        card.name.toLocaleLowerCase().includes(filterSearchText)); // ... le nom en minuscule contient le filtre en minuscule
+      };
+      if(this.isFilterByText==true){
+        this.cardsFiltered = this.cardsFiltered.filter((card:Card)=> // Filtre si ...
+        card.text?.toLocaleLowerCase().includes(filterSearchText)); // ...
+      };
+      if(this.isFilterByFlavorText==true){
+        this.cardsFiltered = this.cardsFiltered.filter((card:Card)=> // Filtre si ...
+        card.flavorText?.toLocaleLowerCase().includes(filterSearchText)); // ... 
+      };
+      //Cartes filtrées (pas de return)
+    }
+  };
+
+  // ___ Réinitialiser les filtres
+  reinitialisation():void{
+    this.isFilterByName = true;
+    this.isFilterByText = false; // text
+    this.isFilterByFlavorText = false; // flavorText
+    this.cardsFiltered = this.allCards;
+  }
 
   
-  filterPerform(filterSearchText:string):void{
-    // this.cardsFiltered$ = this.cardsFiltered$?.pipe(
-    //   map(cards => 
-    //     filter((card:Card) => 
-    //       card.name.toLocaleLowerCase().includes(filterSearchText)
-    //       )      
-    //     )
-    //   )
-  }
 
 
-
-
-
-
+  // ___ Options d'affichages :
   colorDisplay(colors:string[]):string{
     const size:number = colors.length;
     if(size==0){

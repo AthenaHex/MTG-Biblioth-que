@@ -15,13 +15,14 @@ export class CardService {
   constructor(private _http : HttpClient){};
   private _cardsUrl = 'api/mockscards.json'; // Lien vers les mocks data
 
-  // Méthode de Getter
+  // Méthode de Getter pour tout
   getCards():Observable<Card[]>{
     return this._http.get<Card[]>(this._cardsUrl).pipe(
       // tap(data => console.log('Observable<Card[]> : ', JSON.stringify(data))), // Pour print les données : JSON.stringify(data)
       catchError(this.handleError)
     );
   }
+
 
   getCardsByNumber(number: string):Observable<Card>{
     return this._http.get<Card[]>("../"+this._cardsUrl).pipe(
