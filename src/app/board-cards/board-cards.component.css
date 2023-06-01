@@ -5,7 +5,7 @@
 }
 
 .more-filters{
-    
+    vertical-align: middle;
 }
 .more-filters-invisible{
     visibility: collapse;
@@ -35,6 +35,10 @@
 
 .text-left{
     text-align: left;
+}
+.large{
+    white-space: nowrap;
+    width:auto;
 }
 
 table{
@@ -72,25 +76,23 @@ td{
     transform: translateY(-0.1px);
     margin-top: 10px;
     transition: 0.35s;
-  }
-
-  .checkbox-true {
-    appearance: none;
-    color: currentColor;
-    background-color: rgb(125, 75, 20);
-    width: 15px;
-    height: 15px;
-    border: 0.15px solid currentColor;
-    border-radius: 0.15em;
-    transform: translateY(-0.1px);
-    margin-top: 10px;
-    transition: 0.35s;
-  }
-
-  .checkbox-false:hover {    
-    background-color: rgb(186, 153, 18);}
-  .checkbox-true:hover {    
-    background-color: rgb(165, 115, 60);}
+}
+.checkbox-true {
+  appearance: none;
+  color: currentColor;
+  background-color: rgb(125, 75, 20);
+  width: 15px;
+  height: 15px;
+  border: 0.15px solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.1px);
+  margin-top: 10px;
+  transition: 0.35s;
+}
+.checkbox-false:hover {    
+  background-color: rgb(186, 153, 18);}
+.checkbox-true:hover {    
+  background-color: rgb(165, 115, 60);}
 
 button{
     background-color: rgb(255, 255, 130);
