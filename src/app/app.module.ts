@@ -15,9 +15,8 @@ import { CardDetailComponent } from './card-detail/card-detail.component';
 import { MenuBurgerComponent } from './menu-burger/menu-burger.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-
-
-
+import { AppRoutingModule } from './app-routing.module';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [
@@ -27,22 +26,23 @@ import { AboutComponent } from './about/about.component';
     CardDetailComponent,
     MenuBurgerComponent,
     AboutComponent,
-
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: 'home', component: HomeComponent},
-      { path: 'list', component: BoardCardsComponent},
-      // { path: 'comments', component: BoardOnlyCommentsComponent},
-      // { path: 'contact', component: ContactComponent},
-      { path: 'about', component: AboutComponent},
-      { path: 'details/:number', component: BoardCardDetailComponent},
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: '**', redirectTo: '/home', pathMatch: 'full'},
-    ]),
+    // RouterModule.forRoot([
+    //   { path: 'home', component: HomeComponent},
+    //   { path: 'list', component: BoardCardsComponent},
+    //   // { path: 'comments', component: BoardOnlyCommentsComponent},
+    //   // { path: 'contact', component: ContactComponent},
+    //   { path: 'about', component: AboutComponent},
+    //   { path: 'details/:number', component: BoardCardDetailComponent},
+    //   { path: '', redirectTo: 'home', pathMatch: 'full' },
+    //   { path: '**', redirectTo: 'home', pathMatch: 'full'},
+    // ]),
+    AppRoutingModule,
   ],
   providers: [
 

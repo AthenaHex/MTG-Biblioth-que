@@ -7,7 +7,7 @@ import { CardService } from '../card.service';
 @Component({
   selector: 'app-board-card-detail',
   templateUrl: './board-card-detail.component.html',
-  styleUrls: ['./board-card-detail.component.css']
+  styleUrls: ['../board-cards/board-cards.component.css']
 })
 export class BoardCardDetailComponent implements OnInit{
   card$: Observable<Card> | undefined;
