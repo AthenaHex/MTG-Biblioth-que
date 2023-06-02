@@ -7,6 +7,9 @@
 .more-filters{
     vertical-align: middle;
 }
+.more-filters > tr > th:first-child{
+    width: 30px;
+}
 .more-filters-invisible{
     visibility: collapse;
 }

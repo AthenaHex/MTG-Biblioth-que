@@ -1,73 +1,73 @@
 
 <h4 class="description-line">Filtres :</h4>
 <table class="table-filter">
-    <thead>
         <tr>
             <td><button class="full-button" (click)="performFilter()">Filtrer</button></td>
+            <td></td>
             <td><button class="full-button" (click)="toggleMoreFilters()">Plus de filtres -></button></td>
         </tr>
-        <div [ngClass]="moreFilterIsDisplay ? 'more-filters' : 'more-filters-invisible' ">
-            <tr> 
-                <th><input [ngClass]="isFilterByPower ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByPower"></th>
-                <th class="text-left large">Force</th> 
-                <th>
-                    <select [(ngModel)]="directionFilterPower"> 
-                        <option value="=">Egale à</option> 
-                        <option value="<">Plus petit que</option> 
-                        <option value=">">Plus grand que</option>
-                    </select> 
-                </th>                
-                <th><input type="number" [(ngModel)]="searchValuePower"></th> 
-            </tr>
-            <tr>
-                <th><input [ngClass]="isFilterByToughness ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByToughness"></th>
-                <th class="text-left large">Endurance</th> 
-                <th>
-                    <select [(ngModel)]="directionFilterToughness"> 
-                        <option value="=">Egale à</option> 
-                        <option value="<">Plus petit que</option> 
-                        <option value=">">Plus grand que</option>
-                    </select> 
-                </th>
-                <th><input type="number" [(ngModel)]="searchValueToughness"></th> 
-            </tr>
-            <tr>
-                <th><input [ngClass]="isFilterByConvertedManaCost ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByConvertedManaCost"></th>
-                <th class="text-left large">Coût convertie</th>
-                <th>
-                    <select [(ngModel)]="directionFilterConvertedManaCost"> 
-                        <option value="=">Egale à</option> 
-                        <option value="<">Plus petit que</option> 
-                        <option value=">">Plus grand que</option>
-                    </select> 
-                </th>
-                 <th><input type="number" [(ngModel)]="searchValueConvertedManaCost"></th>
-            </tr>
-            <tr>
-                <th><input [ngClass]="isFilterByArtist ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByArtist"></th>
-                <th class="text-left">Artiste</th>
-                <th>contient</th>
-                <th><input type="text" [(ngModel)]="filterSearchByArtist"></th>
-            </tr>
-        </div>
-
         <tr>
             <th class="text-left">Nom</th>
+            <th>contient</th>
             <th><input type="text" [(ngModel)]="filterSearchByName"></th>
         </tr>
         <tr>
             <th class="text-left">Texte</th>
+            <th>contient</th>
             <th><input type="text" [(ngModel)]="filterSearchByText"></th>
         </tr>
         <tr>
             <th class="text-left">Texte d'illustration</th>
+            <th>contient</th>
             <th><input type="text" [(ngModel)]="filterSearchByFlavorText"></th>
         </tr>
-    </thead>
-    <tbody>
-           
-    </tbody>
 </table>
+
+<table [ngClass]="moreFilterIsDisplay ? 'more-filters' : 'more-filters-invisible' ">
+    <tr> 
+        <th><input [ngClass]="isFilterByPower ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByPower"></th>
+        <th class="text-left large">Force</th> 
+        <th>
+            <select [(ngModel)]="directionFilterPower"> 
+                <option value="=">Egale à</option> 
+                <option value="<">Plus petit que</option> 
+                <option value=">">Plus grand que</option>
+            </select> 
+        </th>                
+        <th><input type="number" [(ngModel)]="searchValuePower"></th> 
+    </tr>
+    <tr>
+        <th><input [ngClass]="isFilterByToughness ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByToughness"></th>
+        <th class="text-left large">Endurance</th> 
+        <th>
+            <select [(ngModel)]="directionFilterToughness"> 
+                <option value="=">Egale à</option> 
+                <option value="<">Plus petit que</option> 
+                <option value=">">Plus grand que</option>
+            </select> 
+        </th>
+        <th><input type="number" [(ngModel)]="searchValueToughness"></th> 
+    </tr>
+    <tr>
+        <th><input [ngClass]="isFilterByConvertedManaCost ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByConvertedManaCost"></th>
+        <th class="text-left large">Coût convertie</th>
+        <th>
+            <select [(ngModel)]="directionFilterConvertedManaCost"> 
+                <option value="=">Egale à</option> 
+                <option value="<">Plus petit que</option> 
+                <option value=">">Plus grand que</option>
+            </select> 
+        </th>
+         <th><input type="number" [(ngModel)]="searchValueConvertedManaCost"></th>
+    </tr>
+    <tr>
+        <th><input [ngClass]="isFilterByArtist ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByArtist"></th>
+        <th class="text-left">Artiste</th>
+        <th>contient</th>
+        <th><input type="text" [(ngModel)]="filterSearchByArtist"></th>
+    </tr>
+</table>
+
 
 <h4 class="description-line">Affichage(s) :</h4>
 <table class="table-filter">
