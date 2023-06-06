@@ -170,11 +170,23 @@ button:hover{
     margin: 0%;
 }
 
+#img-card{
+    position:fixed;
+    top:40%;
+    left:60%;
+}
 
+#card-name{
+    cursor: pointer;
+}
 
+.visible{
+    visibility: visible;
+}
 
-
-
+.invisible{
+    visibility: collapse;
+}
 
 
 

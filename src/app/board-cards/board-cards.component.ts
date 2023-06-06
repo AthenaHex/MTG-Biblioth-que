@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CardService } from '../card.service';
 import { Card } from '../models/cards';
 import { Observable, map, filter } from 'rxjs';
+import { JsonWebSiteService } from '../json-web-site.service';
+import { JsonWebSite } from '../models/jsonWebSite';
 
 
 @Component({
@@ -15,9 +17,13 @@ export class BoardCardsComponent implements OnInit{
   // Variables __________________________________
   allCards:Card[] = [];
   cardsFiltered:Card[] = [];
+  //              -
   errorMessageCardService:string="";
-  errorMessage:string="";
+  errorMessageGetCards:string="";
+  errorMessageGetJsonWebSite:string="";
   // ______ booléans de l'affichage
+  isCardImgVisible:boolean = false;
+  //              -
   displayColors:boolean = true;
   displayManaCost:boolean = true;
   displayType:boolean = true;
@@ -44,22 +50,47 @@ export class BoardCardsComponent implements OnInit{
   //              -
   isFilterByArtist:boolean = false;
   filterSearchByArtist:string="";
-  //              -
+  // ______ url(s)
+  key:string = "9284bad4ecc53a00dddee1c133bc03e8";
+  cardUrl:string = "https://fr.wikipedia.org/wiki/Girafe";
+  getJsonUrl:string = "http://api.linkpreview.net/?key="+this.key+"&q="+this.cardUrl;
+  jsonWebSite:JsonWebSite={
+    title: '',
+    description: '',
+    image: '',
+    url: ''
+  }
 
+  // ______ Le constructeur défini la dépendance
+  constructor(private cardService:CardService, private jsonWebSiteService:JsonWebSiteService){};
 
-  // ___ Le constructeur défini la dépendance
-  constructor(private cardService:CardService){};
-
+  
+  // Méthodes __________________________________
   //___ OnInit :
   ngOnInit(): void {
     this.cardService.getCards().subscribe({
       next: cards =>                 // if ok
-      this.allCards = cards,    
-    error:                               // if not ok
-      err => this.errorMessage = err        // Message d'erreur
+        this.allCards = cards,    
+      error:                               // if not ok
+        errGetCards => this.errorMessageGetCards = errGetCards        // Message d'erreur
     })
+    
+    // _____ De la daube à retirer
     this.cardsFiltered = this.allCards;
-  };
+    this.setCardImgUrl(this.getJsonUrl);
+    // _____ De la daube à retirer
+  }
+
+  // ___ Récupère les infos du site à parti de l'URL de l'api qui fait ça
+  setCardImgUrl(url:string):void{
+    // l'url est le getJsonUrl
+    this.jsonWebSiteService.getJsonWebSite(url).subscribe({
+      next: json =>                 // if ok
+        this.jsonWebSite = json,    
+      error:                               // if not ok
+        errGetJsonWebSite => this.errorMessageGetJsonWebSite = errGetJsonWebSite  // Message d'erreur
+    })
+  }
 
   // ___ Défini les cartes après filtre
   performFilter():void{
@@ -133,18 +164,13 @@ export class BoardCardsComponent implements OnInit{
       console.log("La direction est : "+this.directionFilterConvertedManaCost+", searchValueConvManaCost"+this.searchValueConvertedManaCost);
     };
 
-  // ___ Réinitialiser les filtres
-  reinitialisation():void{
-    this.filterSearchByName="";
-    this.filterSearchByText="";
-    this.filterSearchByFlavorText="";
-    this.performFilter();
-  }
+
 
   
 
 
   // ___ Options d'affichages :
+  // ______ Change la couleur des cases en fonction de la couleur de la carte
   colorDisplay(colors:string[]):string{
     const size:number = colors.length;
     if(size==0){
@@ -172,26 +198,36 @@ export class BoardCardsComponent implements OnInit{
     }
     
   }
-
-  // ______ affichage des filtres précis
+  // ______ affichage des filtres plus précis
   toggleMoreFilters():void{
     this.moreFilterIsDisplay = !this.moreFilterIsDisplay;
   }
-
+  // ______ Réinitialiser les filtres
+  reinitialisation():void{
+    this.filterSearchByName="";
+    this.filterSearchByText="";
+    this.filterSearchByFlavorText="";
+    this.performFilter();
+  }
+  // ______ Active le type de recherche lorsque son champs est onfocus
   validSearchBool(theBooleanString:string) {
     switch(theBooleanString){
       case "power":
-        this.isFilterByPower = !this.isFilterByPower;
+        this.isFilterByPower = true;
         break;
       case "toughness":
-        this.isFilterByToughness = !this.isFilterByToughness;
+        this.isFilterByToughness = true;
         break;
       case "convertedManaCost":
-        this.isFilterByConvertedManaCost = !this.isFilterByConvertedManaCost;
+        this.isFilterByConvertedManaCost = true;
         break;
       case "artist":
-        this.isFilterByArtist = !this.isFilterByArtist;
+        this.isFilterByArtist = true;
         break;
     }
+    }
+    // ______ Affiche ou cache l'image si la souris passe sur le nom de la carte
+    displayCardImg(isOrIsNot:boolean):void{
+      this.isCardImgVisible = isOrIsNot;
     }
 }

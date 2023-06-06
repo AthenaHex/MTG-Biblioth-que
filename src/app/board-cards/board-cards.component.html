@@ -68,7 +68,7 @@
     </tr>
 </table>
 
-<div id="image">oups</div>
+<img id="img-card" [ngClass]="isCardImgVisible? 'visible' : 'invisible' " src="{{jsonWebSite.image}}">
 
 <h4 class="description-line">Affichage(s) :</h4>
 <table class="table-filter">
@@ -110,7 +110,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let card of cardsFiltered">
-            <th class="text-left">{{card.name}}</th>
+            <th id="card-name" class="text-left" (mouseenter)="displayCardImg(true)" (mouseleave)="displayCardImg(false)">{{card.name}}</th>
             <td [ngClass]="colorDisplay(card.colors)" *ngIf="displayColors">{{card.colors}}</td>
             <td *ngIf="displayManaCost">{{card.manaCost}}</td>
             <td class="text-left" *ngIf="displayType">{{card.type}}</td>
