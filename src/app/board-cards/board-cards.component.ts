@@ -12,7 +12,6 @@ import { Observable, map, filter } from 'rxjs';
 })
 
 export class BoardCardsComponent implements OnInit{
-
   // Variables __________________________________
   allCards:Card[] = [];
   cardsFiltered:Card[] = [];
@@ -179,4 +178,20 @@ export class BoardCardsComponent implements OnInit{
     this.moreFilterIsDisplay = !this.moreFilterIsDisplay;
   }
 
+  validSearchBool(theBooleanString:string) {
+    switch(theBooleanString){
+      case "power":
+        this.isFilterByPower = !this.isFilterByPower;
+        break;
+      case "toughness":
+        this.isFilterByToughness = !this.isFilterByToughness;
+        break;
+      case "convertedManaCost":
+        this.isFilterByConvertedManaCost = !this.isFilterByConvertedManaCost;
+        break;
+      case "artist":
+        this.isFilterByArtist = !this.isFilterByArtist;
+        break;
+    }
+    }
 }

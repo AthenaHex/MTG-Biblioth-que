@@ -3,8 +3,8 @@
 <table class="table-filter">
         <tr>
             <td><button class="full-button" (click)="performFilter()">Filtrer</button></td>
-            <td></td>
-            <td><button class="full-button" (click)="toggleMoreFilters()">Plus de filtres -></button></td>
+            <td><button class="full-button" [ngClass]="moreFilterIsDisplay ? 'more-filters' : 'more-filters-invisible' " (click)="toggleMoreFilters()"> <- Moins de filtres </button></td>
+            <td><button class="full-button" [ngClass]="moreFilterIsDisplay ? 'more-filters-invisible' : 'more-filters' " (click)="toggleMoreFilters()">Plus de filtres -></button></td>
         </tr>
         <tr>
             <th class="text-left">Nom</th>
@@ -34,7 +34,7 @@
                 <option value=">">Plus grand que</option>
             </select> 
         </th>                
-        <th><input type="number" [(ngModel)]="searchValuePower"></th> 
+        <th><input type="number" [(ngModel)]="searchValuePower" (focus)="validSearchBool('power')"></th> 
     </tr>
     <tr>
         <th><input [ngClass]="isFilterByToughness ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByToughness"></th>
@@ -46,7 +46,7 @@
                 <option value=">">Plus grand que</option>
             </select> 
         </th>
-        <th><input type="number" [(ngModel)]="searchValueToughness"></th> 
+        <th><input type="number" [(ngModel)]="searchValueToughness" (focus)="validSearchBool('toughness')"></th> 
     </tr>
     <tr>
         <th><input [ngClass]="isFilterByConvertedManaCost ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByConvertedManaCost"></th>
@@ -58,16 +58,17 @@
                 <option value=">">Plus grand que</option>
             </select> 
         </th>
-         <th><input type="number" [(ngModel)]="searchValueConvertedManaCost"></th>
+         <th><input type="number" [(ngModel)]="searchValueConvertedManaCost" (focus)="validSearchBool('convertedManaCost')"></th>
     </tr>
     <tr>
         <th><input [ngClass]="isFilterByArtist ? 'checkbox-true' : 'checkbox-false'"  type="checkbox" [(ngModel)]="isFilterByArtist"></th>
         <th class="text-left">Artiste</th>
         <th>contient</th>
-        <th><input type="text" [(ngModel)]="filterSearchByArtist"></th>
+        <th><input type="text" [(ngModel)]="filterSearchByArtist" (focus)="validSearchBool('artist')"></th>
     </tr>
 </table>
 
+<div id="image">oups</div>
 
 <h4 class="description-line">Affichage(s) :</h4>
 <table class="table-filter">
